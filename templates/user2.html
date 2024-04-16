@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Comparison Results</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: antiquewhite;
+            color: #020208;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #E6E6FA;
+        }
+
+        h2 {
+            text-align: center;
+            font-family: cursive;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+        }
+
+        .result-box {
+            background-color: #f2f2f2;
+            border-radius: 25px;
+            padding: 5px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon">
+        <img src="{{ url_for('static', filename='images/ee.png') }}" alt="Smiling Baby">
+        <div class="container">
+            <!-- KNN Results -->
+            <div class="result-box">
+                <h2>KNN Result</h2>
+                {% if knn_result == 0 %}
+                <p>My tummy's feeling all sorts of funny. A little help here?</p>
+                {% elif knn_result == 1 %}
+                <p>Could you help me with a little burp, please? I think it'll make me feel better.</p>
+                {% elif knn_result == 2 %}
+                <p>I'm not quite comfortable right now.</p>
+                {% elif knn_result == 3 %}
+                <p>Where's my food?</p>
+                {% elif knn_result == 4 %}
+                <p>I want to take a nap.</p>
+                {% else %}
+                <p>There is some issue with the audio.</p>
+                {% endif %}
+                <h3>Prediction Accuracy: {{ k_score }}</h3>
+            </div>
+            
+            <!-- Random Forest Results -->
+            <div class="result-box">
+                <h2>Random Forest Result</h2>
+                {% if rf_result == 0 %}
+                <p>My tummy's feeling all sorts of funny. A little help here?</p>
+                {% elif rf_result == 1 %}
+                <p>Could you help me with a little burp, please? I think it'll make me feel better.</p>
+                {% elif rf_result == 2 %}
+                <p>I'm not quite comfortable right now.</p>
+                {% elif rf_result == 3 %}
+                <p>Where's my food?</p>
+                {% elif rf_result == 4 %}
+                <p>I want to take a nap.</p>
+                {% else %}
+                <p>There is some issue with the audio.</p>
+                {% endif %}
+                <h3>Prediction Accuracy: {{ rf_score }}</h3>
+            </div>
+            
+            <!-- SVM Results -->
+            <div class="result-box">
+                <h2>SVM Result</h2>
+                {% if svm_result == 0 %}
+                <p>My tummy's feeling all sorts of funny. A little help here?</p>
+                {% elif svm_result == 1 %}
+                <p>Could you help me with a little burp, please? I think it'll make me feel better.</p>
+                {% elif svm_result == 2 %}
+                <p>I'm not quite comfortable right now.</p>
+                {% elif svm_result == 3 %}
+                <p>Where's my food?</p>
+                {% elif svm_result == 4 %}
+                <p>I want to take a nap.</p>
+                {% else %}
+                <p>There is some issue with the audio.</p>
+                {% endif %}
+                <h3>Prediction Accuracy: {{ sv_score }}</h3>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

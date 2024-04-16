@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Single Icon Baby Management</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:antiquewhite;
+            color: #020208; /* Light white */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #E6E6FA; /* Light white border */
+        }
+
+        h2 {
+            text-align: center;
+            font-family:cursive ;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 15px;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon">
+        <img src="http://127.0.0.1:5000/static/images/ee.png" alt="Smiling Baby" >
+        {% if result == 0 %}
+        <h2>My tummy's feeling all sorts of funny. A little help here?</h2>
+        {% elif result == 1 %}
+        <h2>Could you help me with a little burp, please? I think it'll make me feel better.</h2>
+        {% elif result == 2 %}
+        <h2>I'm not quite comfortable right now</h2>
+        {% elif result == 3 %}
+        <h2>Where's my food ?</h2>
+        {% elif result == 4 %}
+        <h2>I want to take a nap</h2>
+        {% else %}
+        <h2>There is some issue with the audio</h2>
+        {% endif %}
+         <h3>Prediction Accuracy: {{ score }}</h3>
+    </div>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Baby Management App - Infant Cry Classification</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        body {
+            font-family: 'Baloo 2', cursive;
+            background-image: url('../static/images/pic1.jpg');
+            background-size: cover; /* Ensure the background covers the screen */
+            background-position: center; /* Center the background image */
+            color: #736060;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            padding: 20px;
+            border-radius: 25px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: auto;
+            max-width: 350px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: scale(1.03);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #d3c5af;
+            font-family: 'Lobster', cursive;
+            margin: 10px 0 20px;
+        }
+
+        form {
+            background-color: #F3E5D8;
+            padding: 10px;
+            border-radius: 20px;
+            margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 16px;
+            color: #6A4A3C;
+            margin-bottom: 8px;
+            display: block;
+            text-align: left;
+        }
+
+        #hupfilename {
+            font-size: 10px;
+            border-radius: 25px;
+            border: 2px solid #EAD3C1;
+            width: 100%;
+            background-color: #FFF9F0;
+            color: #c79c8a;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        input[type="file"]:hover {
+            background-color: #F3E5D8;
+            border-color: #F08777;
+        }
+
+        button {
+            font-size: 16px;
+            color: #FFFFFF;
+            background-color: #F3A183;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #F08777;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        img.baby-icon {
+            width: 60px;
+            height: auto;
+            margin: 15px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                background-size: 100% auto; /* Adjust the background size for smaller screens */
+                padding: 0;
+                margin: 0;
+            }
+
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            #hupfilename {
+                font-size: 12px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+
+            img.baby-icon {
+                width: 50px;
+            }
+        }
+
+        /* Your other CSS styles remain unchanged */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://cdn-icons-png.flaticon.com/128/10660/10660705.png" alt="Baby Icon" class="baby-icon">
+        <h1>Infant Cry Classification</h1>
+        <form action="/login" method="post" enctype="multipart/form-data">
+            <input  type="hidden" id="btn_action" name="btn_action">
+            <label for="hupfilename">Upload Baby Audio:</label>
+            <input type="file" id="hupfilename" name="hupfilename"><br/>
+            <script>
+                document.getElementById('hupfilename').addEventListener('change', function(event) {
+                    var file = this.files[0];
+                    if (file) {
+                        var fileType = file.type;
+                        // Check if the file is a WAV audio
+                        if (fileType !== 'audio/wav' && fileType !== 'audio/x-wav') {
+                            alert('Please upload an WAV audio file');// Go back to the previous page
+                            return; // Stop further execution
+                        }
+                
+                        // Code here will only execute if the file is a WAV.
+                        console.log("The rest of the script will run here if the file is a WAV.");
+                    }
+                });
+                function setModelValue() {
+                var modelValue = localStorage.getItem('model');
+                document.getElementById('btn_action').value = modelValue;
+            }
+
+            // Call setModelValue function when the page loads
+            window.onload = setModelValue;
+            </script>
+            <button type="submit">Submit</button>
+            
+        </form>
+    </div>
+</body>
+</html>

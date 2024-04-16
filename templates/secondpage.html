@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Baby Themed Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: url(../static/images/t2.png);
+            background-size: cover; /* Cover the entire screen */
+            background-position: center; /* Center the background image */
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            text-align: center;
+            width: auto;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #fff2ca;
+            color: #6d591e;
+            border: 2px solid #f5c6cb;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            background-color: #f5c6cb;
+            color: #fff2ca;
+        }
+
+        .floating-img {
+            animation: float 6s ease-in-out infinite;
+            position: absolute;
+            top: 25px;
+            left: 45%;
+            transform: translateX(-50%);
+        }
+
+        /* Responsive Design for Mobile Devices */
+        @media only screen and (max-width: 600px) {
+            body {
+                flex-direction: column;
+                padding: 10px;
+                background-size: contain; /* Adjust background size for smaller screens */
+                background-repeat: no-repeat; /* Prevent repeating the background */
+            }
+
+            .form-container {
+                width: 90%;
+                padding: 10px;
+            }
+
+            button {
+                width: 100%;
+                margin: 5px 0; /* More spacing between buttons */
+            }
+
+            .floating-img {
+                width: 100px;
+                left: 50%; /* Center the image */
+            }
+        }
+
+        
+    </style>
+</head>
+<body>
+    <img src="../static/images/cute-remove.png" class="floating-img" alt="Floating Baby Image" width="150px">
+    <div class="form-container">
+        <form id="myForm" action="/index" method="get" >
+            <button type="submit" name="btn_action" value="KNN">KNN</button>
+            <button type="submit" name="btn_action" value="RF">Random Forest</button>
+            <button type="submit" name="btn_action" value="SVM">SVM</button>
+            <button type="submit" name="btn_action" value="COMPARE">Compare</button>
+        </form>
+        
+    </div>
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            var selectedAction = document.activeElement.value;
+            localStorage.setItem('model', selectedAction);
+        });
+    </script>
+</body>
+</html>
